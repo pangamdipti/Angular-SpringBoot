@@ -51,4 +51,15 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+
+	@Override
+	public List<User> getUserByValue(String keyword) {
+		if(keyword !=null) {
+			return userRepository.search(keyword);
+		} else {
+			return userRepository.findAll();
+		}
+				
+	}
+
 }

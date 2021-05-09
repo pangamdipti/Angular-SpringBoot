@@ -16,5 +16,5 @@ public interface UserService {
 
 	public void delete(User user);
 
-
+	public List<User> getUserByValue(String keyword);
 }

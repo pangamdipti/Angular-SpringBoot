@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootajax.exception.ResourceNotFoundException;
 import com.springbootajax.model.User;
-import com.springbootajax.repository.UserRepository;
 import com.springbootajax.security.AuthenticationBean;
 import com.springbootajax.service.UserService;
 
@@ -37,6 +36,8 @@ public class UserController {
     	return userService.getAllUsers();
         //return userRepository.findAll();
     }
+    
+    
 
     //get user by id
     @GetMapping("/users/{id}")
@@ -48,6 +49,17 @@ public class UserController {
          // .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
         return ResponseEntity.ok().body(user);
     }
+    
+  //search by value
+    @GetMapping("/users/search/{keyword}")
+	public List<User> searchUser(@PathVariable(value = "keyword") String keyword) 
+    throws ResourceNotFoundException{
+    	System.out.println(keyword);
+		//logger.info("Searching user...");
+		List<User> listUsers = userService.getUserByValue(keyword);
+		System.out.println(listUsers);
+		return listUsers;
+	}
     
     //save user
     @PostMapping("/users")
@@ -89,6 +101,8 @@ public class UserController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
+    
     
     @GetMapping(path="/basicauth")
     public AuthenticationBean basicauth() {
