@@ -11,7 +11,7 @@ import com.springbootajax.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	@Query(value="SELECT u FROM User u WHERE CONCAT(u.id,'',u.firstName,'',u.lastName)LIKE %?1%")
+	@Query(value="SELECT u FROM User u WHERE CONCAT(u.id,'',u.firstName,'',u.lastName,'',u.emailId,'',u.contact)LIKE %?1%")
 	public List<User> search(String keyword);
 
 }

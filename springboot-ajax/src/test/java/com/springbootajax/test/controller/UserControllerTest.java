@@ -131,5 +131,32 @@ public class UserControllerTest {
 		int response = result.getResponse().getStatus();
 		assertEquals(200, response);
 	}
+	
+	@Test
+	@WithMockUser(username = "user", password = "test123")
+	public void searchUser() throws Exception{
+		User user = new User();
+		user.setId(1);
+		user.setFirstName("Dipti");
+		user.setLastName("Pangam");
+		user.setEmailId("pangam.dipti.99@gmail.com");
+		user.setContact("9969969599");
+		
+		List<User> list = new ArrayList<User>();
+		list.add(user);
+		
+		
+		String response = objMap.writeValueAsString(list);
+		
+		Mockito.when(service.getUserByValue("Dipti")).thenReturn(list);
+		
+		MvcResult result = mockMvc
+				.perform(get("/api/v1/users/search/Dipti").contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		
+		assertEquals(response, result.getResponse().getContentAsString());
+		assertEquals(200, result.getResponse().getStatus());
+	}
+	
 
 }
