@@ -1,0 +1,59 @@
+
+<h3>Update User</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form [formGroup]="userValid" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName" formControlName="firstName" [class.invalid]="isInvalidAndDirty('firstName')" name="firstName">
+      <span class="error-message" *ngIf="hasError('firstName','required')">
+        First name is required !!!
+      </span>
+      <span class="error-message" *ngIf="hasError('firstName','minlength')">
+        First name must be at least 2 characters long !!!
+      </span>
+      <span class="error-message" *ngIf="hasError('firstName','maxlength')">
+        First name cannot be longer than 30 characters !!!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="user.lastName" formControlName="lastName" [class.invalid]="isInvalidAndDirty('lastName')" name="lastName">
+      <span class="error-message" *ngIf="hasError('lastName','required')">
+        Last name is required !!!
+      </span>
+      <span class="error-message" *ngIf="hasError('lastName','minlength')">
+        Last name must be at least 2 characters long !!! 
+      </span>
+      <span class="error-message" *ngIf="hasError('lastName','maxlength')">
+        Last name cannot be longer than 30 characters !!!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Email Id</label>
+      <input type="text" class="form-control" id="emailId" required [(ngModel)]="user.emailId" formControlName="emailId" [class.invalid]="isInvalidAndDirty('emailId')" name="emailId">
+      <span class="error-message" *ngIf="hasError('emailId','required')">
+        Email id is required !!!
+      </span>
+      <span class="error-message" *ngIf="hasError('emailId','pattern')">
+        Invalid Email id !!!
+      </span>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Contact</label>
+        <input type="text" class="form-control" id="contact" required [(ngModel)]="user.contact" formControlName="contact" [class.invalid]="isInvalidAndDirty('contact')" name="contact">
+        <span class="error-message" *ngIf="hasError('contact','required')">
+          Contact number is required !!!
+        </span>
+        <span class="error-message" *ngIf="hasError('contact','pattern')">
+          Invalid contact number !!!
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!userValid.valid">Submit</button>
+  </form>
+  <button (click)="gotoList()" class="btn btn-primary">Back to User List</button><br>
+</div>

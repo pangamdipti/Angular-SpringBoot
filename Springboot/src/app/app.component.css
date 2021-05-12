@@ -1,0 +1,48 @@
+footer, header{
+    left: 0;
+    background-color: cadetblue;
+    
+    font-size: 30px;
+    width: 100%;
+    
+    text-align: center;
+    overflow: hidden;
+}
+footer{
+    bottom: 0px;
+    position: fixed;
+    height: max-content;
+
+
+}
+header{
+    top: 0px;
+    position: relative;
+    height: max-content;
+}
+
+.footer-text, .header-text{
+    padding: 10px 10px 10px 10px;
+}
+
+
+html,body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+.content{
+    position: fixed;
+    overflow: auto;
+    left: 0px;
+    right: 0px;
+    top: 300px;
+    bottom: 200px;
+
+}
+
+.nav-item{
+    padding: auto;
+    padding-right: 40px;
+}
